@@ -1,7 +1,6 @@
 import streamlit as st
 import anthropic
 import datetime
-import clipboard
 
 st.title('🎭 SCENEDLE  🤪')
 st.subheader("Silly Scene Solver")
@@ -66,11 +65,11 @@ def simulate_outcome(scenario, user_plan):
 
 
 
-def copy_to_clipboard(scenario, user_plan, outcome):
+def create_shareable_text(scenario, user_plan, outcome):
     url = 'https://www.scenedle.streamlit.app'
     full_text = f"Scenario: {scenario}\n\nSolution Plan: {user_plan}\n\nOutcome: {outcome}\n\nPlay: {url}"
-    clipboard.copy(full_text)
-    st.success("Result copied to clipboard!")
+    st.code(full_text, language="text")
+    st.info("Use the copy button in the top right to share your result!")
 
 # Initialize session state variables
 if 'daily_scenario' not in st.session_state:
@@ -81,6 +80,7 @@ if 'user_input' not in st.session_state:
 
 # Main app logic
 st.write("Today's Silly Situation:")
+
 st.markdown(f"**{st.session_state.daily_scenario}**")
 
 user_input = st.text_input("What would you do to solve this situation?", value=st.session_state.user_input)
@@ -93,7 +93,7 @@ if user_input:
     st.write(st.session_state.simulation_outcome)
 
     if st.button("Share Result"):
-        copy_to_clipboard(st.session_state.daily_scenario, user_input, st.session_state.simulation_outcome)
+        create_shareable_text(st.session_state.daily_scenario, user_input, st.session_state.simulation_outcome)
 
 if st.button("Generate New Scenario"):
     st.session_state.daily_scenario = generate_daily_scenario()
