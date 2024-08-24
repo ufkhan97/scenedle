@@ -70,17 +70,21 @@ def copy_to_clipboard(scenario, user_plan, outcome):
     pyperclip.copy(full_text)
     st.success("Copied to clipboard!")
 
-# Main app logic
+# Initialize session state variables
 if 'daily_scenario' not in st.session_state:
-    user_input = ""
     st.session_state.daily_scenario = generate_daily_scenario()
 
+if 'user_input' not in st.session_state:
+    st.session_state.user_input = ""
+
+# Main app logic
 st.write("Today's Silly Situation:")
 st.markdown(f"**{st.session_state.daily_scenario}**")
 
-user_input = st.text_input("What would you do to solve this situation?")
+user_input = st.text_input("What would you do to solve this situation?", value=st.session_state.user_input)
 
 if user_input:
+    st.session_state.user_input = user_input
     if 'simulation_outcome' not in st.session_state:
         st.session_state.simulation_outcome = simulate_outcome(st.session_state.daily_scenario, user_input)
     
@@ -91,6 +95,7 @@ if user_input:
 
 if st.button("Generate New Scenario"):
     st.session_state.daily_scenario = generate_daily_scenario()
+    st.session_state.user_input = ""
     if 'simulation_outcome' in st.session_state:
         del st.session_state.simulation_outcome
     st.rerun()
