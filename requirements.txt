@@ -2,5 +2,4 @@ streamlit
 anthropic
 pyperclip
 pandas
-google-auth
-google-cloud-storage
+

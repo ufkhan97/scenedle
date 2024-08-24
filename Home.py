@@ -4,7 +4,7 @@ import datetime
 import pyperclip
 
 st.title('🎭 SCENEDLE  🤪')
-st.subheader("Daily Silly Scene Solver")
+st.subheader("Silly Scene Solver")
 
 # Initialize the Anthropic client
 client = anthropic.Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
@@ -25,7 +25,7 @@ def generate_daily_scenario():
 
                 "It's {today}, and you wake up to find you've been shrunk to the size of a mouse. Your smartphone is now the size of a billboard, and your cat thinks you're a new toy. You have an important job interview in an hour, but your car keys are now too heavy to lift. What do you do to get to your interview on time and explain your tiny predicament?"
 
-                Now, generate a new scenario that's equally absurd and funny, but different from this example. Keep it under 100 words."""
+                Now, generate a new scenario that's equally absurd and funny, but different from this example. Keep it under 70 words."""
             }
         ]
     )
@@ -36,7 +36,7 @@ def simulate_outcome(scenario, user_plan):
 
     The person's plan to solve it is: {user_plan}
 
-    Simulate what would happen if they did this. Be creative and humorous in your description. Keep the entire simulation under 150 words.
+    Simulate what would happen if they did this. Be creative and humorous in your description. Keep the entire simulation under 110 words.
 
     Follow these steps:
 
@@ -65,12 +65,14 @@ def simulate_outcome(scenario, user_plan):
     return response.content[0].text
 
 def copy_to_clipboard(scenario, user_plan, outcome):
-    full_text = f"Scenario: {scenario}\n\nSolution Plan: {user_plan}\n\nOutcome: {outcome}"
+    url = 'https://www.scenedle.streamlit.app'
+    full_text = f"Scenario: {scenario}\n\nSolution Plan: {user_plan}\n\nOutcome: {outcome}\n\nPlay: {url}"
     pyperclip.copy(full_text)
     st.success("Copied to clipboard!")
 
 # Main app logic
 if 'daily_scenario' not in st.session_state:
+    user_input = ""
     st.session_state.daily_scenario = generate_daily_scenario()
 
 st.write("Today's Silly Situation:")
@@ -91,4 +93,4 @@ if st.button("Generate New Scenario"):
     st.session_state.daily_scenario = generate_daily_scenario()
     if 'simulation_outcome' in st.session_state:
         del st.session_state.simulation_outcome
-    st.experimental_rerun()
+    st.rerun()
