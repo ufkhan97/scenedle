@@ -4,7 +4,6 @@ import datetime
 
 st.title('🎭 SCENEDLE  🤪')
 st.subheader("Silly Scene Solver")
-st.write(" life is just a big joke ")
 # Initialize the Anthropic client
 client = anthropic.Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
 
