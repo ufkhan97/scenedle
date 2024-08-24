@@ -1,13 +1,13 @@
 import streamlit as st
 import anthropic
 import datetime
+import pyperclip   
 
 st.title('🎭 SCENEDLE  🤪')
 st.subheader("Silly Scene Solver")
 
 # Initialize the Anthropic client
 client = anthropic.Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
-st.write("Welcome to Scenedle! This app generates ridiculous scenarios and simulates the outcomes of your solutions. Use it for a laugh or to spark your creativity. 🎉")
 
 def generate_daily_scenario():
     today = datetime.date.today().strftime("%Y-%m-%d")
@@ -67,8 +67,8 @@ def simulate_outcome(scenario, user_plan):
 def copy_to_clipboard(scenario, user_plan, outcome):
     url = 'https://www.scenedle.streamlit.app'
     full_text = f"Scenario: {scenario}\n\nSolution Plan: {user_plan}\n\nOutcome: {outcome}\n\nPlay: {url}"
-    st.code(full_text, language="text")
-    st.info("Copy the text above to share your Scenedle result!")
+    pyperclip.copy(full_text)
+    st.success("Result copied to clipboard!")
 
 # Initialize session state variables
 if 'daily_scenario' not in st.session_state:
