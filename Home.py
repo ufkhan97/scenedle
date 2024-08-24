@@ -1,7 +1,7 @@
 import streamlit as st
 import anthropic
 import datetime
-import pyperclip   
+import clipboard
 
 st.title('🎭 SCENEDLE  🤪')
 st.subheader("Silly Scene Solver")
@@ -64,10 +64,12 @@ def simulate_outcome(scenario, user_plan):
     
     return response.content[0].text
 
+
+
 def copy_to_clipboard(scenario, user_plan, outcome):
     url = 'https://www.scenedle.streamlit.app'
     full_text = f"Scenario: {scenario}\n\nSolution Plan: {user_plan}\n\nOutcome: {outcome}\n\nPlay: {url}"
-    pyperclip.copy(full_text)
+    clipboard.copy(full_text)
     st.success("Result copied to clipboard!")
 
 # Initialize session state variables
