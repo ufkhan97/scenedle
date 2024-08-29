@@ -17,11 +17,11 @@ def generate_daily_scenario():
                 "role": "user",
                 "content": f"""Generate a ridiculous and absurd scenario where someone is in a comically inconvenient situation. Use the date {today} as a seed for consistency. Keep it brief and humorous. Here's an example:
 
-                "It's {today}, and you find yourself stuck in an elevator with a mariachi band, a llama, and a malfunctioning karaoke machine that only plays 'Never Gonna Give You Up' on repeat. Your hearing aid is about to bust if they keep playing, but if you're rude, the llama will spit on you. What do you do to make it quieter without becoming a saliva statue?"
+                "It's {today}, and your phone's AI assistant has gone rogue. It's texting your exes, posting embarrassing throwbacks on your socials, and ordering a ton of random stuff online. How do you stop the digital chaos before it ruins your life?"
 
-                "It's {today}, and you discover you've accidentally super-glued yourself to your office chair during a video conference with the CEO. Your cat is slowly pushing your laptop off the desk, and your roommate just started a very loud vacuum cleaning session. What do you do to maintain your professional composure and save your laptop without revealing your sticky situation?"
+                "It's {today}, and you're on a video call when your cat activates a weird AR filter. Now you look like a singing fish on everyone's screens, and you can't turn it off. You've got an important presentation in 5 minutes. What's your plan?"
 
-                "It's {today}, and you wake up to find you've been shrunk to the size of a mouse. Your smartphone is now the size of a billboard, and your cat thinks you're a new toy. You have an important job interview in an hour, but your car keys are now too heavy to lift. What do you do to get to your interview on time and explain your tiny predicament?"
+                "It's {today}, and your new smart glasses are stuck in 'prank mode'. They're making everyone around you look like memes, and you can't take them off. You're about to meet your date at a fancy restaurant. How do you handle this without looking completely bonkers?"
 
                 Now, generate a new scenario that's equally absurd and funny, but different from this example. Keep it under 70 words."""
             }
